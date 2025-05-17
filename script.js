@@ -15,7 +15,6 @@ function makeNewTodoItem(item) {
     todoItem.draggable = true;
     todoItem.dataset.id = item.id;
     
-    // add the inner stuff
     todoItem.innerHTML = `
         <span class="check-box ${item.completed ? 'checked' : ''}"></span>
         <span class="todo-text">${item.text}</span>
@@ -24,13 +23,11 @@ function makeNewTodoItem(item) {
         </button>
     `;
 
-    // handle clicking checkbox
     var check = todoItem.querySelector('.check-box');
     check.addEventListener('click', function() {
         markTodoDone(item.id);
     });
 
-    // handle delete button
     var delButton = todoItem.querySelector('.delete-btn');
     delButton.addEventListener('click', function() {
         removeTodo(item.id);
@@ -39,7 +36,6 @@ function makeNewTodoItem(item) {
     return todoItem;
 }
 
-// add new todo when enter is pressed
 input.addEventListener('keypress', function(e) {
     if (e.key === 'Enter' && input.value.trim() !== '') {
         var newItem = {
