@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="main-container">
+        <header>
+
+            <h1>TO DO</h1>
+        </header>
+
+        <div class="text-input-div">
+
+            <div class="check-box"></div>
+
+            <input type="text" class="text-input" placeholder="Create a new todo...">
+
+        </div>
+
+        <div class="todo-list-container">
+
+            <ul class="todo-list-items"></ul>
+            
+            <div class="bottom-items">
+
+                <span class="items-left">0 items left</span>
+                <div class="filters">
+                    <button class="filter active" data-filter="all">All</button>
+                    <button class="filter" data-filter="active">Active</button>
+                    <button class="filter" data-filter="completed">Completed</button>
+                </div>
+
+                <button class="clear-completed-button">Clear Completed</button>
+            </div>
+        </div>
+
+        <p class="drag-and-drop">Drag and drop to reorder list</p>
+    
+    </section>
+
+
+
+    <button class="theme-icons">
+        <img src="images/icon-sun.svg" alt="" class="theme-icon">
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
