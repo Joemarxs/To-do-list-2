@@ -1,27 +1,9 @@
-:root{
-   --text-muted: hsl(236, 9%, 61%);
-    --bg-color: hsl(0, 0%, 98%);
-    --todo-bg: white;
-    --border-color: hsl(233, 11%, 84%);
-    --hover-color: hsl(235, 19%, 35%);
-    --text-color: hsl(235, 19%, 35%);
-    --bg-image: url('/images/bg-desktop-light.jpg');
-}
 
-[data-theme="dark"]{
-   
-    --text-muted: hsl(234, 11%, 52%);
-    --bg-color: hsl(235, 21%, 11%);
-    --todo-bg: hsl(235, 24%, 19%);
-    --bg-image: url('images/bg-desktop-dark.jpg');
-    --text-color: hsl(234, 39%, 85%);
-    --border-color: hsl(237, 14%, 26%);
-    --hover-color: hsl(236, 33%, 92%);
-}
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /*family: 'Josefin Sans', sans-serif;*/
 }
 
 body::before{
@@ -44,6 +26,31 @@ body{
     font-size: 17px;
     background-color: var(--bg-color);
 }
+
+:root{
+    --text-muted: hsl(236, 9%, 61%);
+    --bg-color: hsl(0, 0%, 98%);
+    --del-button: hsl(235, 19%, 35%);
+    --todo-bg: white;
+    --border-color: hsl(233, 11%, 84%);
+    --hover-color: hsl(235, 19%, 35%);
+    --text-color: hsl(235, 19%, 35%);
+    --bg-image: url('images/bg-desktop-light.jpg');
+}
+
+[data-theme="dark"]{
+   
+    --text-muted: hsl(234, 11%, 52%);
+    --del-button: hsl(234, 39%, 85%);
+    --bg-color: hsl(235, 21%, 11%);
+    --todo-bg: hsl(235, 24%, 19%);
+    --bg-image: url('images/bg-desktop-dark.jpg');
+    --text-color: hsl(234, 39%, 85%);
+    --border-color: hsl(237, 14%, 26%);
+    --hover-color: hsl(236, 33%, 92%);
+}
+
+
 .main-container{
     max-width: 400px;
     padding: 8px 20px;
@@ -54,9 +61,9 @@ body{
 header{
     width: 100%;
     display: flex;
-    justify-content: center;
-    position: relative;
+    justify-content: space-between;
     margin-bottom: 30px;
+    
     
 }
 
@@ -67,32 +74,30 @@ h1{
 }
 
 .text-input-div,
-.todo-list-container {
+.todo-list-container{
     background-color: var(--todo-bg);
     border-radius: 5px;
     margin-bottom: 20px;
-    -webkit-box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    
 }
 
-.todo-list-container:hover {
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+.todo-list-container:hover{
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.2);
 }
 
-.text-input-div {
+.text-input-div{
     display: flex;
     align-items: center;
     padding: 20px;
     gap: 20px;
 }
 
-.check-box {
-    width: 24px;
-    height: 24px;
-    border: 1px solid var(--border-color);
+.check-box{
+    width: 23px;
+    height: 23px;
     border-radius: 50%;
     cursor: pointer;
+    border: 1px solid var(--border-color);
 }
 
 .text-input{
@@ -105,51 +110,53 @@ h1{
     outline: none;
 }
 
-.text-input::placeholder {
-    color: var(--text-muted);
-}
-
-.todo-list-items {
+.todo-list-items{
     list-style: none;
 }
 
-.todo-item {
+.text-input::placeholder{
+    color: var(--text-muted);
+}
+
+
+
+.todo-item{
     display: flex;
     align-items: center;
-    padding: 20px 25px;
+    padding: 25px 25px;
     border-bottom: 1px solid var(--border-color);
     margin: 0;
-    transition: all 0.2s ease;
 }
-
-.todo-item:hover {
-    background-color: rgba(0, 0, 0, 0.02);
-}
-
 .todo-item.completed .todo-text {
     text-decoration: line-through;
     color: var(--text-muted);
     opacity: 0.8;
 }
 
-.todo-item > * {
-    margin-right: 20px;
+.todo-item:hover{
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
-.todo-item > *:last-child {
+
+
+.todo-item > *:last-child{
     margin-right: 0;
 }
 
-.todo-item .check-box {
+.todo-item > *{
+    margin-right: 20px;
+}
+
+.todo-item .check-box{
     position: relative;
 }
 
-.todo-item .check-box.checked {
+.todo-item .check-box.checked{
     background: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
     border: none;
 }
 
-.todo-item .check-box.checked::after {
+.todo-item .check-box.checked::after{
     content: '';
     position: absolute;
     left: 8px;
@@ -161,29 +168,24 @@ h1{
     transform: rotate(45deg);
 }
 
-.todo-text {
+.todo-text{
     flex: 1;
     color: var(--text-color);
 }
 
-.delete-btn {
-    opacity: 0.2;
+.deleteButton{
+    opacity: 0.4;
     border: 0;
     background: transparent;
     cursor: pointer;
     padding: 5px;
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
-    transition: all 0.2s;
     display: flex;
     align-items: center;
+    color: var(--del-button);
 }
 
-.todo-item:hover .delete-btn {
-    opacity: 0.8;
-}
 
-.delete-btn:hover {
+.deleteButton:hover {
     transform: scale(1.1);
 }
 
@@ -227,16 +229,8 @@ h1{
     font-size: 0.9rem;
 }
 .theme-icons{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 25px;
-    right: 35px;
     border: none;
     border-radius: 50%;
-    padding: 10px;
-    z-index: 900;
     width: 40px;
     height: 40px;
     background: transparent;

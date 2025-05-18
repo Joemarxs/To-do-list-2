@@ -9,31 +9,43 @@ var todoContainer = document.querySelector('.todo-list-items');
 var darkButton = document.querySelector('.theme-icons');
 
 
-function makeNewTodoItem(item) {
+function makeTodoItem(item) {
     var todoItem = document.createElement('li');
-    todoItem.className = item.completed ? 'todo-item completed' : 'todo-item';
     todoItem.draggable = true;
     todoItem.dataset.id = item.id;
+    todoItem.className = item.completed ? 'todo-item completed' : 'todo-item';
+  
     
     todoItem.innerHTML = `
         <span class="check-box ${item.completed ? 'checked' : ''}"></span>
         <span class="todo-text">${item.text}</span>
-        <button class="delete-btn">
-            <images src="./images/icon-cross.svg" alt="Delete">
+        <button class="deleteButton">
+            <img src="images/icon-cross.svg" alt="">
         </button>
     `;
 
     var check = todoItem.querySelector('.check-box');
     check.addEventListener('click', function() {
-        markTodoDone(item.id);
+        finishedTodo(item.id);
     });
 
-    var delButton = todoItem.querySelector('.delete-btn');
-    delButton.addEventListener('click', function() {
+    var clearButton = todoItem.querySelector('.deleteButton');
+    clearButton.addEventListener('click', function() {
         removeTodo(item.id);
     });
 
     return todoItem;
+}
+
+function finishedTodo(id) {
+    for(var i = 0; i < list.length; i++) {
+        if(list[i].id === id) {
+            list[i].completed = !list[i].completed;
+            break;
+        }
+    }
+    saveToStore();
+    displayTodos();
 }
 
 input.addEventListener('keypress', function(e) {
@@ -45,37 +57,27 @@ input.addEventListener('keypress', function(e) {
         };
         
         list.push(newItem);
-        saveToStorage();
-        showTodos();
+        saveToStore();
+        displayTodos();
         input.value = '';
     }
 });
 
-function markTodoDone(id) {
-    for(var i = 0; i < list.length; i++) {
-        if(list[i].id === id) {
-            list[i].completed = !list[i].completed;
-            break;
-        }
-    }
-    saveToStorage();
-    showTodos();
-}
 
 function removeTodo(id) {
     list = list.filter(function(todo) {
         return todo.id !== id;
     });
-    saveToStorage();
-    showTodos();
+    saveToStore();
+    displayTodos();
 }
 
 clearButton.addEventListener('click', function() {
     list = list.filter(function(todo) {
         return !todo.completed;
     });
-    saveToStorage();
-    showTodos();
+    saveToStore();
+    displayTodos();
 });
 
 var currentView = 'all';
@@ -86,11 +88,11 @@ filterButtons.forEach(function(btn) {
         });
         btn.classList.add('active');
         currentView = btn.dataset.filter;
-        showTodos();
+        displayTodos();
     });
 });
 
-function showTodos() {
+function displayTodos() {
     var todosToShow = list.filter(function(todo) {
         if(currentView === 'active') {
             return !todo.completed;
@@ -103,7 +105,7 @@ function showTodos() {
     todoContainer.innerHTML = '';
     
     for(var i = 0; i < todosToShow.length; i++) {
-        todoContainer.appendChild(makeNewTodoItem(todosToShow[i]));
+        todoContainer.appendChild(makeTodoItem(todosToShow[i]));
     }
 
     var notDone = list.filter(function(todo) {
@@ -112,7 +114,7 @@ function showTodos() {
     itemsLeft.textContent = notDone + (notDone === 1 ? ' item left' : ' items left');
 }
 
-function saveToStorage() {
+function saveToStore() {
     localStorage.setItem('todos', JSON.stringify(list));
 }
 
@@ -167,23 +169,24 @@ todoContainer.addEventListener('dragend', function() {
         });
     });
     list = newOrder;
-    saveToStorage();
+    saveToStore();
 });
 
 function setTheme() {
     var isDarkMode = localStorage.getItem('darkTheme') === 'true';
     if (isDarkMode !== null) {
         document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-        darkImage.src = isDarkMode ? './images/icon-sun.svg' : './images/icon-moon.svg';
+        darkImage.src = isDarkMode ? 'images/icon-sun.svg' : 'images/icon-moon.svg';
     }
 }
 
 darkButton.addEventListener('click', function() {
     var isDark = document.body.getAttribute('data-theme') === 'dark';
     document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    darkImage.src = isDark ? './images/icon-moon.svg' : './images/icon-sun.svg';
+    darkImage.src = isDark ? 'images/icon-moon.svg' : 'images/icon-sun.svg';
     localStorage.setItem('darkTheme', !isDark);
 });
 
 setTheme();
-showTodos();
+
+displayTodos();
