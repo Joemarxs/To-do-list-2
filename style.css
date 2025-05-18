@@ -1,4 +1,25 @@
+:root{
+    --text-muted: hsl(236, 9%, 61%);
+    --bg-color: hsl(0, 0%, 98%);
+    --del-button: hsl(235, 19%, 35%);
+    --todo-bg: white;
+    --border-color: hsl(233, 11%, 84%);
+    --hover-color: hsl(235, 19%, 35%);
+    --text-color: hsl(235, 19%, 35%);
+    --bg-image: url('images/bg-desktop-light.jpg');
+}
 
+[data-theme="dark"]{
+   
+    --text-muted: hsl(234, 11%, 52%);
+    --del-button: hsl(234, 39%, 85%);
+    --bg-color: hsl(235, 21%, 11%);
+    --todo-bg: hsl(235, 24%, 19%);
+    --bg-image: url('images/bg-desktop-dark.jpg');
+    --text-color: hsl(234, 39%, 85%);
+    --border-color: hsl(237, 14%, 26%);
+    --hover-color: hsl(236, 33%, 92%);
+}
 *{
     margin: 0;
     padding: 0;
@@ -25,29 +46,6 @@ body{
     min-height: 100vh;
     font-size: 17px;
     background-color: var(--bg-color);
-}
-
-:root{
-    --text-muted: hsl(236, 9%, 61%);
-    --bg-color: hsl(0, 0%, 98%);
-    --del-button: hsl(235, 19%, 35%);
-    --todo-bg: white;
-    --border-color: hsl(233, 11%, 84%);
-    --hover-color: hsl(235, 19%, 35%);
-    --text-color: hsl(235, 19%, 35%);
-    --bg-image: url('images/bg-desktop-light.jpg');
-}
-
-[data-theme="dark"]{
-   
-    --text-muted: hsl(234, 11%, 52%);
-    --del-button: hsl(234, 39%, 85%);
-    --bg-color: hsl(235, 21%, 11%);
-    --todo-bg: hsl(235, 24%, 19%);
-    --bg-image: url('images/bg-desktop-dark.jpg');
-    --text-color: hsl(234, 39%, 85%);
-    --border-color: hsl(237, 14%, 26%);
-    --hover-color: hsl(236, 33%, 92%);
 }
 
 
@@ -229,12 +227,12 @@ h1{
     font-size: 0.9rem;
 }
 .theme-icons{
+
     border: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
     background: transparent;
-    background: rgba(255, 255, 255, 0.1);
     cursor: pointer;
 }
 
